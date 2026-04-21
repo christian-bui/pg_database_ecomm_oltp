@@ -1,0 +1,17 @@
+[project]
+name = "pg-database-ecomm-oltp"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Christian Nghi Bui",email = "buiducnghi@gmail.com"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "faker (>=40.13.0,<41.0.0)",
+    "polars (>=1.39.3,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

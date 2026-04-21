@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Environment variables (CỰC KỲ QUAN TRỌNG)
+.env
+
+# Docker
+postgres_data/
+
+# IDE
+.vscode/
