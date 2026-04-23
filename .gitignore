@@ -2,6 +2,12 @@
 __pycache__/
 *.py[cod]
 .venv/
+.pytest_cache/
+
+# Ignore all log files
+*.log
+logs/*
+!logs/.gitkeep
 
 # Environment variables
 .env
