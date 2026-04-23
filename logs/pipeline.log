@@ -1,0 +1,14 @@
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: Starting the E-commerce Synthetic Data Pipeline...
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: Step 1: Generating independent tables (Brand, Category, Seller)
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: Step 2: Generating dependent table (Product)
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: Step 3: Generating Promotions and Promo_Products mapping
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: Data Generation Complete. Summary of all 6 tables:
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: 1. Brands        : 20 rows
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: 2. Categories    : 10 rows
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: 3. Sellers       : 25 rows
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: 4. Products      : 2000 rows
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: 5. Promotions    : 10 rows
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: 6. Promo_Products: 100 rows
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: Sample Product Schema: {'product_id': Int32, 'product_name': String, 'category_id': Int32, 'brand_id': Int32, 'seller_id': Int32, 'price': Float64, 'discount_price': Float64, 'stock_qty': Int32, 'rating': Float32, 'created_at': Datetime(time_unit='us', time_zone='UTC'), 'is_active': Boolean}
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: SUCCESS: All 6 dataframes are ready in memory.
+2026-04-23 10:40:38 | INFO     | [data_pipeline]: Next move: Prepare the database to receive this data.

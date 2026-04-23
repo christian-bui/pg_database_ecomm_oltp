@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 .venv/
 
-# Environment variables (CỰC KỲ QUAN TRỌNG)
+# Environment variables
 .env
 
 # Docker
