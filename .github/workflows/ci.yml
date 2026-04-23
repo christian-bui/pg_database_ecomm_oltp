@@ -1,0 +1,55 @@
+name: Data Engineering CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: ecomm_admin
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          POSTGRES_DB: ecomm_oltp
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Run Schema Initialization
+      run: |
+        PGPASSWORD=password123 psql -h localhost -p 5433 -U ecomm_admin -d ecomm_oltp -f init_scripts/01_init_schema.sql
+
+    - name: Run Tests
+      run: |
+        export POSTGRES_HOST=localhost
+        export POSTGRES_PORT=5433
+        export POSTGRES_USER=ecomm_admin
+        export POSTGRES_PASSWORD=password123
+        export POSTGRES_DB=ecomm_oltp
+        poetry run pytest

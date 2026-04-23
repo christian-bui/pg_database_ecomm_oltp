@@ -1,19 +1,29 @@
-# Python
+# --- Python Environment ---
 __pycache__/
 *.py[cod]
+*$py.class
 .venv/
 .pytest_cache/
+.python-version
 
-# Ignore all log files
+# --- Logging & Reports ---
 *.log
 logs/*
+# Keep the directory structure but ignore actual log files
 !logs/.gitkeep
+# Ignore JUnit XML test reports
+*.xml
 
-# Environment variables
+# --- Environment Variables ---
+# NEVER commit the actual .env file
 .env
 
-# Docker
+# --- Database & Infrastructure ---
+# Ignore local Docker database volumes
 postgres_data/
 
-# IDE
+# --- IDE & OS Rác ---
 .vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -100,26 +100,29 @@ poetry run pytest
 ## Repository Structure
 ```text
 PG_DATABASE_ECOMM_OLTP/
+├── .github/workflows/
+│   └── ci.yml                      # Automated CI/CD pipeline configuration
 ├── configs/
 │   └── settings.py                 # Environment variables loader
 ├── init_scripts/
 │   └── 01_init_schema.sql          # Automated DDL script for Docker Postgres
-├── logs/                           # Ignored by Git, stores test and pipeline execution logs
+├── logs/
+│   └── .gitkeep                    # Ensures directory tracking in version control
 ├── src/
 │   ├── generator.py                # Faker data synthesis logic
 │   ├── logger.py                   # Custom logging configuration
 │   └── postgres_loader.py          # ADBC ingestion logic
 ├── tests/
 │   ├── integration/
-│   │   └── test_db_integration.py  # DB connections, referential integrity, and logic tests
+│   │   └── test_db_integration.py  # DB integrity and business logic tests
 │   └── unit/
-│       └── test_data_contracts.py  # In-memory schema and data type validation
+│       └── test_data_contracts.py  # In-memory schema validation
 ├── .env.example                    # Template for environment variables
 ├── .gitignore                      # Standardized version control exclusions
 ├── docker-compose.yml              # Infrastructure state definition
+├── LICENSE                         # MIT License for open-source distribution
 ├── main.py                         # The pipeline orchestrator
 ├── poetry.lock                     # Locked dependency tree
 ├── pyproject.toml                  # Project metadata and requirements
-├── pytest.ini                      # Centralized configuration for automated test logging
+├── pytest.ini                      # Automated test logging configuration
 └── README.md                       # Project documentation and setup guide
-```
