@@ -20,7 +20,7 @@ jobs:
         ports:
           - 5433:5432
         options: >-
-          --health-cmd pg_isready
+          --health-cmd "pg_isready -U ecomm_admin -d ecomm_oltp"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -43,13 +43,13 @@ jobs:
 
     - name: Run Schema Initialization
       run: |
-        PGPASSWORD=password123 psql -h localhost -p 5433 -U ecomm_admin -d ecomm_oltp -f init_scripts/01_init_schema.sql
+        PGPASSWORD=${{ secrets.DB_PASSWORD }} psql -h localhost -p 5433 -U ecomm_admin -d ecomm_oltp -f init_scripts/01_init_schema.sql
 
     - name: Run Tests
       run: |
         export POSTGRES_HOST=localhost
         export POSTGRES_PORT=5433
         export POSTGRES_USER=ecomm_admin
-        export POSTGRES_PASSWORD=password123
+        export POSTGRES_PASSWORD=${{ secrets.DB_PASSWORD }}
         export POSTGRES_DB=ecomm_oltp
         poetry run pytest
